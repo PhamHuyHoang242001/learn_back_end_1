@@ -17,12 +17,23 @@ const app = express();
 // app.use(bodyParser.json({ limit: "50mb" }));
 // app.use(cors());
 app.use(morgan("common"));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(express.json());
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json("Hello");
 });
 app.get("/welcom", (req, res) => {
+  console.log(req.query);
   res.status(200).json("chào mọi");
+});
+app.post("/send-data", (req, res) => {
+  console.log(req.body);
+  res.send("ddadaa");
 });
 
 // //Routes
